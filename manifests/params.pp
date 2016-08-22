@@ -60,4 +60,9 @@ class puppetboard::params {
   $apache_override = 'None'
   $default_environment = 'production'
   $extra_settings = {}
+  $ldap_bind_dn = false
+  $ldap_bind_password = false
+  $ldap_url = false
+  $ldap_bind_authoritative = false
+  $enable_ldap_auth = false
 }
