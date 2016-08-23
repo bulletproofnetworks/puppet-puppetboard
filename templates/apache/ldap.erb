@@ -1,4 +1,4 @@
-<LocationMatch ^/puppetboard>
+#<LocationMatch ^/puppetboard>
    AuthType Basic
    AuthName "Login to puppetboard"
    Order Allow,Deny
@@ -18,4 +18,4 @@
    AuthLDAPBindAuthoritative <%= @ldap_bind_authoritative -%>
    <% end %>
    Require valid-user
-</LocationMatch>
+#</LocationMatch>
