@@ -96,7 +96,32 @@ class puppetboard::apache::vhost (
       Vcsrepo[$docroot],
     ],
   }
-
+  if $enable_ldap_auth != false {
+  file { "${::puppetboard::params::apache_confd}/puppetboard-ldap.conf":
+    ensure  => present,
+    owner   => 'root',
+    group   => 'root',
+    content => template('puppetboard/apache/ldap.erb'),
+    require => File["${docroot}/wsgi.py"],
+    notify  => Service[$::puppetboard::params::apache_service],
+  }
+  ::apache::vhost { $vhost_name:
+    port                        => $port,
+    docroot                     => $docroot,
+    ssl                         => $ssl,
+    ssl_cert                    => $ssl_cert,
+    ssl_key                     => $ssl_key,
+    additional_includes         => [ "${::puppetboard::params::apache_confd}/puppetboard-ldap.conf" ],
+    wsgi_daemon_process         => $user,
+    wsgi_process_group          => $group,
+    wsgi_script_aliases         => $wsgi_script_aliases,
+    wsgi_daemon_process_options => $wsgi_daemon_process_options,
+    override                    => $override,
+    require                     => [ File["${docroot}/wsgi.py"], File["${::puppetboard::params::apache_confd}/puppetboard-ldap.conf"] ],
+    notify                      => Service[$::puppetboard::params::apache_service],
+    
+  }
+  } else {
   ::apache::vhost { $vhost_name:
     port                        => $port,
     docroot                     => $docroot,
@@ -108,8 +133,10 @@ class puppetboard::apache::vhost (
     wsgi_script_aliases         => $wsgi_script_aliases,
     wsgi_daemon_process_options => $wsgi_daemon_process_options,
     override                    => $override,
-    require                     => File["${docroot}/wsgi.py"],
+    require                     => [ File["${docroot}/wsgi.py"] ],
     notify                      => Service[$::puppetboard::params::apache_service],
+
   }
+ }
 
 }

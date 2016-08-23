@@ -1,15 +1,3 @@
-# foobar
-WSGIDaemonProcess puppetboard user=<%= @user -%> group=<%= @user -%> threads=<%= @threads %> maximum-requests=<%= @max_reqs %>
-WSGIScriptAlias <%= @wsgi_alias -%> <%= @docroot -%>/wsgi.py
-
-<Directory <%= @docroot -%>>
-    WSGIProcessGroup puppetboard
-    WSGIApplicationGroup %{GLOBAL}
-    Order deny,allow
-    Allow from all
-</Directory>
-## Puppet data <%= @ldap_bind_dn -%>
-<% if @enable_ldap_auth != false %> 
 <LocationMatch ^/puppetboard>
    AuthType Basic
    AuthName "Login to puppetboard"
@@ -31,4 +19,3 @@ WSGIScriptAlias <%= @wsgi_alias -%> <%= @docroot -%>/wsgi.py
    <% end %>
    Require valid-user
 </LocationMatch>
-<% end %>
