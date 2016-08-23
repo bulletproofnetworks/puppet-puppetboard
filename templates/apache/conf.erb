@@ -10,7 +10,7 @@ WSGIScriptAlias <%= @wsgi_alias -%> <%= @docroot -%>/wsgi.py
 </Directory>
 ## Puppet data <%= @ldap_bind_dn -%>
 <% if @enable_ldap_auth != false %> 
-<LocationMatch ^/puppetboard>
+#<LocationMatch ^/puppetboard>
    AuthType Basic
    AuthName "Login to puppetboard"
    Order Allow,Deny
@@ -30,5 +30,5 @@ WSGIScriptAlias <%= @wsgi_alias -%> <%= @docroot -%>/wsgi.py
    AuthLDAPBindAuthoritative <%= @ldap_bind_authoritative -%>
    <% end %>
    Require valid-user
-</LocationMatch>
+#</LocationMatch>
 <% end %>
