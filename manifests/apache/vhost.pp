@@ -119,7 +119,6 @@ class puppetboard::apache::vhost (
     override                    => $override,
     require                     => [ File["${docroot}/wsgi.py"], File["${::puppetboard::params::apache_confd}/puppetboard-ldap.conf"] ],
     notify                      => Service[$::puppetboard::params::apache_service],
-    
   }
   } else {
   ::apache::vhost { $vhost_name:
@@ -135,7 +134,6 @@ class puppetboard::apache::vhost (
     override                    => $override,
     require                     => [ File["${docroot}/wsgi.py"] ],
     notify                      => Service[$::puppetboard::params::apache_service],
-
   }
  }
 
