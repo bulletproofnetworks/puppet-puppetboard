@@ -134,7 +134,7 @@ class puppetboard::apache::vhost (
     override                    => $override,
     require                     => [ File["${docroot}/wsgi.py"] ],
     notify                      => Service[$::puppetboard::params::apache_service],
+    }
   }
- }
 
 }
