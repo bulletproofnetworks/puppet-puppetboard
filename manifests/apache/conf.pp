@@ -59,17 +59,17 @@
 # a WSGIApplicationGroup of %{GLOBAL}.
 #
 class puppetboard::apache::conf (
-  $wsgi_alias              = '/puppetboard',
-  $threads                 = 5,
-  $max_reqs                = 0,
-  $user                    = $::puppetboard::params::user,
-  $group                   = $::puppetboard::params::group,
-  $basedir                 = $::puppetboard::params::basedir,
-  $enable_ldap_auth        = $::puppetboard::params::enable_ldap_auth,
-  $ldap_bind_dn            = $::puppetboard::params::ldap_bind_dn,
-  $ldap_bind_password      = $::puppetboard::params::ldap_bind_password,
-  $ldap_url                = $::puppetboard::params::ldap_url,
-  $ldap_bind_authoritative = $::puppetboard::params::ldap_bind_authoritative
+  $wsgi_alias               = '/puppetboard',
+  $threads                  = 5,
+  $max_reqs                 = 0,
+  $user                     = $::puppetboard::params::user,
+  $group                    = $::puppetboard::params::group,
+  $basedir                  = $::puppetboard::params::basedir,
+  $enable_ldap_auth         = $::puppetboard::params::enable_ldap_auth,
+  $ldap_bind_dn             = $::puppetboard::params::ldap_bind_dn,
+  $ldap_bind_password       = $::puppetboard::params::ldap_bind_password,
+  $ldap_url                 = $::puppetboard::params::ldap_url,
+  $ldap_bind_authoritative  = $::puppetboard::params::ldap_bind_authoritative
 
 ) inherits ::puppetboard::params {
 
