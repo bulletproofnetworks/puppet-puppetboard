@@ -51,23 +51,42 @@
 #   (string) Sets the Apache AllowOverride value
 #   Defaults to 'None' ($::puppetboard::params::apache_override)
 #
+# [*enable_ldap_auth]
+#   (bool) Whether to enable LDAP auth
+#   Defaults to False ($::puppetboard::params::enable_ldap_auth)
+#
+# [*ldap_bind_dn]
+#   (string) LDAP Bind DN
+#   No default ($::puppetboard::params::ldap_bind_dn)
+#
+# [*ldap_bind_password]
+#   (string) LDAP password
+#   No default ($::puppetboard::params::ldap_bind_password)
+#
+# [*ldap_url]
+#   (string) LDAP connection string
+#   No default ($::puppetboard::params::ldap_url)
+#
+# [*ldap_bind_authoritative]
+#   (string) Determines if other authentication providers are used when a user can be mapped to a DN but the server cannot bind with the credentials
+#   No default ($::puppetboard::params::ldap_bind_authoritative)
 class puppetboard::apache::vhost (
   $vhost_name,
-  $wsgi_alias  = '/',
-  $port        = 5000,
-  $ssl         = false,
-  $ssl_cert    = undef,
-  $ssl_key     = undef,
-  $threads     = 5,
-  $user        = $::puppetboard::params::user,
-  $group       = $::puppetboard::params::group,
-  $basedir     = $::puppetboard::params::basedir,
-  $override    = $::puppetboard::params::apache_override,
-  $enable_ldap_auth = $::puppetboard::params::enable_ldap_auth,
-  $ldap_bind_dn = $::puppetboard::params::ldap_bind_dn,
-  $ldap_bind_password = $::puppetboard::params::ldap_bind_password,
-  $ldap_url = $::puppetboard::params::ldap_url,
-  $ldap_bind_authoritative = $::puppetboard::params::ldap_bind_authoritative
+  $wsgi_alias               = '/',
+  $port                     = 5000,
+  $ssl                      = false,
+  $ssl_cert                 = undef,
+  $ssl_key                  = undef,
+  $threads                  = 5,
+  $user                     = $::puppetboard::params::user,
+  $group                    = $::puppetboard::params::group,
+  $basedir                  = $::puppetboard::params::basedir,
+  $override                 = $::puppetboard::params::apache_override,
+  $enable_ldap_auth         = $::puppetboard::params::enable_ldap_auth,
+  $ldap_bind_dn             = $::puppetboard::params::ldap_bind_dn,
+  $ldap_bind_password       = $::puppetboard::params::ldap_bind_password,
+  $ldap_url                 = $::puppetboard::params::ldap_url,
+  $ldap_bind_authoritative  = $::puppetboard::params::ldap_bind_authoritative
 
 ) inherits ::puppetboard::params {
 
